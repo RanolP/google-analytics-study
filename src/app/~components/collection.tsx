@@ -64,7 +64,7 @@ export function Collection(props: Props) {
   return (
     <div flex="~ col" w-full mb-4>
       <h2 font-bold text-6 mx-10>
-        {props.collection.title} {seasons()?.items.length}
+        {props.collection.title}
       </h2>
       <div flex="~ row">
         <button
