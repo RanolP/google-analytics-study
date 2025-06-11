@@ -94,19 +94,16 @@ export function Collection(props: Props) {
         >
           {seasons()?.items.map((season, i) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
-              {i}
               <SeasonCard season={season} />
             </li>
           ))}
           {seasons()?.items.map((season, i) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
-              {i}
               <SeasonCard season={season} />
             </li>
           ))}
           {seasons()?.items.map((season, i, a) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
-              {a.length + i}
               <SeasonCard season={season} />
             </li>
           ))}
