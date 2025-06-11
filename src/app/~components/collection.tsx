@@ -49,14 +49,11 @@ export function Collection(props: Props) {
     const len = seasons()!.items.length;
     setAnimating(true);
     setTimeout(() => {
-      setIndex((prev) => {
-        const next =
-          prev + count() < len - count() || prev + count() === len + 1
-            ? prev + count()
-            : len - count() + 1;
-        console.log({ prev, count: count(), len, next });
-        return next;
-      });
+      setIndex((prev) =>
+        prev + count() < len - count() || prev + count() === len + 1
+          ? prev + count()
+          : len - count() + 1
+      );
     }, 10);
     setTimeout(() => {
       setAnimating(false);
