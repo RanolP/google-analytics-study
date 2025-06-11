@@ -8,9 +8,9 @@ export function SeasonCard(props: Props) {
   const [local, others] = splitProps(props, ['season']);
 
   return (
-    <div w-full {...others}>
+    <div w-full min-w-0 {...others}>
       <img rounded-md src={local.season.thumbnail} />
-      <h3>{local.season.title}</h3>
+      <h3 h-16>{local.season.title}</h3>
     </div>
   );
 }

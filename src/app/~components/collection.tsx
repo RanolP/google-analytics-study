@@ -62,7 +62,7 @@ export function Collection(props: Props) {
   };
 
   return (
-    <div flex="~ col" w-full mb-4>
+    <div flex="~ col" w-full mb-4 overflow-hidden>
       <h2 font-bold text-6 mx-10>
         {props.collection.title}
       </h2>
@@ -72,8 +72,9 @@ export function Collection(props: Props) {
           flex
           justify-center
           items-center
-          px-2
           w-10
+          mr-1
+          mb-16
           z-1
           bg="white op-75"
         >
@@ -113,8 +114,9 @@ export function Collection(props: Props) {
           flex
           justify-center
           items-center
-          px-2
           w-10
+          ml-1
+          mb-16
           z-1
           bg="white op-75"
         >
