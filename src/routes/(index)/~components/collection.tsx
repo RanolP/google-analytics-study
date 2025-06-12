@@ -1,5 +1,5 @@
 import { createResource, createSignal, Show } from 'solid-js';
-import { getCollection, type Collection } from '../../services/api/collection';
+import { getCollection, type Collection } from '@/services/api/collection';
 import { SeasonCard } from './season-card';
 
 interface Props {

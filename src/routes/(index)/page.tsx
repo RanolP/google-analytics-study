@@ -1,10 +1,10 @@
 import { createResource, Suspense } from 'solid-js';
-import { getCollectionList } from '../services/api/collection';
-import { createAnalyticsLoader } from '../services/google';
-import { Google } from '../shared/constants';
+import { getCollectionList } from '@/services/api/collection';
+import { createAnalyticsLoader } from '@/services/google';
+import { Google } from '@/shared/constants';
 import { Collection } from './~components/collection';
 
-function App() {
+export default function IndexPage() {
   const loader = createAnalyticsLoader(Google.Analytics.Tag);
 
   const [collections] = createResource(() =>
@@ -25,5 +25,3 @@ function App() {
     </>
   );
 }
-
-export default App;

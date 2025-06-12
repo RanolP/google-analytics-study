@@ -1,5 +1,5 @@
 import { splitProps, type ComponentProps } from 'solid-js';
-import type { Season } from '../../services/api/collection';
+import type { Season } from '@/services/api/collection';
 
 interface Props extends ComponentProps<'div'> {
   season: Season;

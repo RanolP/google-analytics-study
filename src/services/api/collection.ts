@@ -1,4 +1,4 @@
-import { pick } from '../../shared/utils';
+import { pick } from '@/shared/utils';
 
 export interface Collection {
   id: string;

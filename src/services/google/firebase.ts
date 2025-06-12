@@ -5,7 +5,7 @@ import {
   setUserId,
   setUserProperties,
 } from 'firebase/analytics';
-import { Google } from '../../shared/constants';
+import { Google } from '@/shared/constants';
 
 const app = initializeApp(Google.Firebase.Config);
 const analytics = getAnalytics(app);
