@@ -1,4 +1,4 @@
-import { createResource, createSignal } from 'solid-js';
+import { createResource, createSignal, Show } from 'solid-js';
 import { getCollection, type Collection } from '../../services/api/collection';
 import { SeasonCard } from './season-card';
 
@@ -31,9 +31,11 @@ export function Collection(props: Props) {
   queries.md.addEventListener('change', () => setCount(evaluateCount()));
   queries.sm.addEventListener('change', () => setCount(evaluateCount()));
 
+  const [hadInteracted, setInteracted] = createSignal(false);
   const [isAnimating, setAnimating] = createSignal(false);
   const scrollLeft = () => {
     if (seasons.loading) return;
+    if (!hadInteracted()) return;
     const len = seasons()!.items.length;
     setIndex((prev) => (prev === 0 ? prev + len : prev));
     setTimeout(() => {
@@ -42,13 +44,14 @@ export function Collection(props: Props) {
     }, 10);
     setTimeout(() => {
       setAnimating(false);
+      setInteracted(true);
     }, 1000);
   };
   const scrollRight = () => {
     if (seasons.loading) return;
     const len = seasons()!.items.length;
-    setAnimating(true);
     setTimeout(() => {
+      setAnimating(true);
       setIndex((prev) =>
         prev + count() < len - count() || prev + count() === len + 1
           ? prev + count()
@@ -58,6 +61,7 @@ export function Collection(props: Props) {
     setTimeout(() => {
       setAnimating(false);
       setIndex((prev) => (prev > len ? prev - len : prev));
+      setInteracted(true);
     }, 1000);
   };
 
@@ -69,20 +73,24 @@ export function Collection(props: Props) {
       <div flex="~ row">
         <button
           on:click={scrollLeft}
+          class={hadInteracted() ? 'bg-white bg-op-75' : ''}
           flex
           justify-center
           items-center
-          w-10
+          shrink-0
+          w-8
           mr-1
           mb-16
           z-1
-          bg="white op-75"
         >
-          <div i-feather-chevron-left text-6 />
+          <Show when={hadInteracted()}>
+            <div i-feather-chevron-left text-6 />
+          </Show>
         </button>
         <ul
           style={{
-            '--index': index() + (seasons()?.items.length ?? 0),
+            '--index':
+              index() + (hadInteracted() ? seasons()?.items.length ?? 0 : 0),
             '--count': count(),
           }}
           class={`
@@ -114,7 +122,8 @@ export function Collection(props: Props) {
           flex
           justify-center
           items-center
-          w-10
+          shrink-0
+          w-8
           ml-1
           mb-16
           z-1
