@@ -109,17 +109,17 @@ export function Collection(props: Props) {
           transform-translate-x="[calc(-1*var(--index)*(var(--width)+var(--gap))-var(--gap))]"
           flex="~ row"
         >
-          {seasons()?.items.map((season, i) => (
+          {seasons()?.items.map((season) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
               <SeasonCard season={season} />
             </li>
           ))}
-          {seasons()?.items.map((season, i) => (
+          {seasons()?.items.map((season) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
               <SeasonCard season={season} />
             </li>
           ))}
-          {seasons()?.items.map((season, i, a) => (
+          {seasons()?.items.map((season) => (
             <li ml-1 grow-0 shrink-0 w="var(--width)">
               <SeasonCard season={season} />
             </li>
