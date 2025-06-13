@@ -1,7 +1,7 @@
 import { Firebase } from '@/services/google';
 import { to } from '@/shared/routes';
-import { atomWithStorage } from 'jotai/utils';
 import { useAtom } from 'solid-jotai';
+import { atomWithStorage } from 'solid-jotai/utils';
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 
 const nameAtom = atomWithStorage('name', '');
