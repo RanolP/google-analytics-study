@@ -34,5 +34,5 @@ jobs:
       # deploy to GitHub Pages
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: www/dist
+          path: dist
       - uses: actions/deploy-pages@v4
