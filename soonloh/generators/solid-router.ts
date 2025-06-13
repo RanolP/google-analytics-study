@@ -21,7 +21,7 @@ export function genSolidRouter({
       const tree = makeRouteTree(routes);
 
       const generateRoute = (
-        { layout, ...node }: RouteNode,
+        { namedRouteFiles: { layout, ...namedRouteFiles }, ...node }: RouteNode,
         indent: number
       ) => {
         if (layout) {
@@ -32,7 +32,7 @@ export function genSolidRouter({
               path.posix.join(root, layout.filePosix)
             )})),`,
             `  children: [`,
-            generateRoute(node, indent + 1),
+            generateRoute({ namedRouteFiles, ...node }, indent + 1),
             `  ],`,
             `},`,
           ]
@@ -61,9 +61,9 @@ export function genSolidRouter({
         return [
           `{`,
           `  path: ${JSON.stringify(route)},`,
-          node.page &&
+          namedRouteFiles.page &&
             `  component: lazy(() => import(${JSON.stringify(
-              path.posix.join(root, node.page.filePosix)
+              path.posix.join(root, namedRouteFiles.page.filePosix)
             )})),`,
           ...(Object.values(node.children).length > 0
             ? [

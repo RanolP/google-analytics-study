@@ -12,7 +12,7 @@ export function makeRouteTree(routes: Route<CommonSegment>[]) {
     route.segments.forEach((segment, idx, arr) => {
       if (broken) return;
       if (idx + 1 === arr.length && segment.kind === 'terminator') {
-        target[segment.path] = route;
+        target.namedRouteFiles[segment.path] = route;
         broken = true;
         return;
       }

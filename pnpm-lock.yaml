@@ -27,8 +27,8 @@ importers:
         specifier: ^1.9.5
         version: 1.9.7
       soonloh:
-        specifier: ^0.4.0
-        version: 0.4.0
+        specifier: https://pkg.pr.new/RanolP/npm-packages/soonloh@17?cache=3
+        version: https://pkg.pr.new/RanolP/npm-packages/soonloh@17?cache=3
     devDependencies:
       '@iconify-json/feather':
         specifier: ^1.2.1
@@ -1207,8 +1207,9 @@ packages:
     peerDependencies:
       solid-js: ^1.3
 
-  soonloh@0.4.0:
-    resolution: {integrity: sha512-wcGAzY0TcdEQmRG0/26MQkxgLsYwhJnFMvwKY15rJsVucCfx8ih8xkTcJVyz/Db170A0Z1W9V+taOQj0JN/xqw==}
+  soonloh@https://pkg.pr.new/RanolP/npm-packages/soonloh@17?cache=3:
+    resolution: {tarball: https://pkg.pr.new/RanolP/npm-packages/soonloh@17?cache=3}
+    version: 0.4.0
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -2682,7 +2683,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  soonloh@0.4.0: {}
+  soonloh@https://pkg.pr.new/RanolP/npm-packages/soonloh@17?cache=3: {}
 
   source-map-js@1.2.1: {}
 
