@@ -14,10 +14,6 @@ export const GeneratedRoutes = [
         children: [
           {
             path: ["membership"],
-            component: lazy(() => import("@/routes/membership/page.tsx")),
-          },
-          {
-            path: ["/"],
             component: lazy(() => import("@/routes/(home)/page.tsx")),
           },
         ],

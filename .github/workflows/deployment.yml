@@ -1,0 +1,38 @@
+name: deployment
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # setup node & pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # build
+      - name: Build
+        run: |
+          pnpm i
+          pnpm build
+
+      # deploy to GitHub Pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: www/dist
+      - uses: actions/deploy-pages@v4

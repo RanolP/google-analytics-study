@@ -7,7 +7,12 @@ export default config({
   routerRoot: 'src/routes',
   parser: snzrwm.parser({}),
   generators: [
-    genLink({ targetPath: () => 'src/shared/routes/link.ts' }),
+    genLink({
+      targetPath: () => 'src/shared/routes/link.ts',
+      filter(terminator) {
+        return terminator === 'page';
+      },
+    }),
     genSolidRouter({ root: '@/routes' }),
   ],
 });

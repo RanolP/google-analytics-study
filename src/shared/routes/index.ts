@@ -1,2 +1,2 @@
 export * from './definition';
-export { path as to } from './link';
+export { link as to } from './link';

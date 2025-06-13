@@ -3,6 +3,7 @@ import type { CommonSegment, Route } from 'soonloh';
 export function makeRouteTree(routes: Route<CommonSegment>[]) {
   const root: RouteNode = {
     segment: { kind: 'static', path: '/', raw: '' },
+    namedRouteFiles: {},
     children: {},
   };
   for (const route of routes) {
@@ -11,19 +12,16 @@ export function makeRouteTree(routes: Route<CommonSegment>[]) {
     route.segments.forEach((segment, idx, arr) => {
       if (broken) return;
       if (idx + 1 === arr.length && segment.kind === 'terminator') {
-        switch (segment.path) {
-          case 'layout':
-            target.layout = route;
-            break;
-          case 'page':
-            target.page = route;
-            break;
-        }
+        target[segment.path] = route;
         broken = true;
         return;
       }
       if (!(segment.raw in target.children)) {
-        target.children[segment.raw] = { segment, children: {} };
+        target.children[segment.raw] = {
+          segment,
+          namedRouteFiles: {},
+          children: {},
+        };
       }
       target = target.children[segment.raw]!;
     });
@@ -31,26 +29,11 @@ export function makeRouteTree(routes: Route<CommonSegment>[]) {
 
   return {
     root,
-    getLayouts(route: Route<CommonSegment>) {
-      const layouts: Route<CommonSegment>[] = [];
-      let target = root;
-      if (target.layout) {
-        layouts.push(target.layout);
-      }
-      for (const segment of route.segments) {
-        target = target?.children[segment.raw];
-        if (target?.layout) {
-          layouts.push(target.layout);
-        }
-      }
-      return layouts;
-    },
   };
 }
 
 export interface RouteNode {
   segment: CommonSegment;
-  page?: Route<CommonSegment>;
-  layout?: Route<CommonSegment>;
+  namedRouteFiles: Record<string, Route<CommonSegment>>;
   children: Record<string, RouteNode>;
 }
