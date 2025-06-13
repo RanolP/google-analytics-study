@@ -4,7 +4,7 @@ import '@unocss/reset/tailwind.css';
 import 'virtual:uno.css';
 import './index.css';
 import { Router } from '@solidjs/router';
-import { GeneratedRoutes } from '@/shared/routes/generated.ts';
+import { GeneratedRoutes } from '@/shared/routes';
 
 const root = document.getElementById('root');
 

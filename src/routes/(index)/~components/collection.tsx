@@ -35,6 +35,7 @@ export function Collection(props: Props) {
   const [isAnimating, setAnimating] = createSignal(false);
   const scrollLeft = () => {
     if (seasons.loading) return;
+    if (isAnimating()) return;
     if (!hadInteracted()) return;
     const len = seasons()!.items.length;
     setIndex((prev) => (prev === 0 ? prev + len : prev));
@@ -49,6 +50,7 @@ export function Collection(props: Props) {
   };
   const scrollRight = () => {
     if (seasons.loading) return;
+    if (isAnimating()) return;
     const len = seasons()!.items.length;
     setTimeout(() => {
       setAnimating(true);
@@ -70,21 +72,26 @@ export function Collection(props: Props) {
       <h2 font-bold text-6 mx-10>
         {props.collection.title}
       </h2>
-      <div flex="~ row">
+      <div class="group" flex="~ row">
         <button
           on:click={scrollLeft}
-          class={hadInteracted() ? 'bg-white bg-op-75' : ''}
+          opacity-0
+          classList={{
+            'group-hover:opacity-100': true,
+            'bg-white bg-op-75': hadInteracted(),
+          }}
+          transition="400 ease-in-out"
           flex
           justify-center
           items-center
           shrink-0
           w-8
           mr-1
-          mb-16
+          mb-13
           z-1
         >
           <Show when={hadInteracted()}>
-            <div i-feather-chevron-left text-6 />
+            <div i-feather-chevron-left text-8 />
           </Show>
         </button>
         <ul
@@ -93,11 +100,12 @@ export function Collection(props: Props) {
               index() + (hadInteracted() ? seasons()?.items.length ?? 0 : 0),
             '--count': count(),
           }}
-          class={`
-            [--gap:calc(var(--spacing)*1)]
-            [--width:calc((100%-var(--gap)*var(--count)+var(--gap))/var(--count))]
-            ${isAnimating() ? 'transition-ease-in-out transition-1000' : ''}
-          `}
+          classList={{
+            '[--gap:calc(var(--spacing)*1)]': true,
+            '[--width:calc((100%-var(--gap)*var(--count)+var(--gap))/var(--count))]':
+              true,
+            'transition-ease-in-out transition-1000': isAnimating(),
+          }}
           transform-translate-x="[calc(-1*var(--index)*(var(--width)+var(--gap))-var(--gap))]"
           flex="~ row"
         >
@@ -119,17 +127,20 @@ export function Collection(props: Props) {
         </ul>
         <button
           on:click={scrollRight}
+          opacity-0
+          group-hover:opacity-100
+          transition="400 ease-in-out"
           flex
           justify-center
           items-center
           shrink-0
           w-8
           ml-1
-          mb-16
+          mb-13
           z-1
           bg="white op-75"
         >
-          <div i-feather-chevron-right text-6 />
+          <div i-feather-chevron-right text-8 />
         </button>
       </div>
     </div>

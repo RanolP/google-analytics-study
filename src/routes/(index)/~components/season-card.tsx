@@ -10,7 +10,9 @@ export function SeasonCard(props: Props) {
   return (
     <div w-full min-w-0 {...others}>
       <img rounded-md src={local.season.thumbnail} />
-      <h3 h-16>{local.season.title}</h3>
+      <h3 h-13 line-clamp-2 overflow-hidden text-ellipsis>
+        {local.season.title}
+      </h3>
     </div>
   );
 }

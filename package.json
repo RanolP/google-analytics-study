@@ -13,12 +13,13 @@
     "@solidjs/router": "^0.15.3",
     "@unocss/reset": "^66.1.4",
     "firebase": "^11.9.1",
-    "solid-js": "^1.9.5"
+    "solid-js": "^1.9.5",
+    "soonloh": "https://pkg.pr.new/RanolP/npm-packages/soonloh@17?hash=2"
   },
   "devDependencies": {
     "@iconify-json/feather": "^1.2.1",
+    "@total-typescript/ts-reset": "^0.6.1",
     "@types/gtag.js": "^0.0.20",
-    "soonloh": "^0.1.2",
     "typescript": "~5.8.3",
     "unocss": "^66.1.4",
     "vite": "^6.3.5",
