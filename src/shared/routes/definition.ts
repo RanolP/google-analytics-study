@@ -18,7 +18,7 @@ export const GeneratedRoutes = [
           },
           {
             path: ["/"],
-            component: lazy(() => import("@/routes/(index)/page.tsx")),
+            component: lazy(() => import("@/routes/(home)/page.tsx")),
           },
         ],
       },

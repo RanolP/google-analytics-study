@@ -1,12 +1,25 @@
+import { Firebase } from '@/services/google';
 import { to } from '@/shared/routes';
-import { createEffect, createSignal } from 'solid-js';
+import { atomWithStorage } from 'jotai/utils';
+import { useAtom } from 'solid-jotai';
+import { createEffect, createSignal, onCleanup } from 'solid-js';
+
+const nameAtom = atomWithStorage('name', '');
 
 export function NavBar() {
   const [isTransparent, setTransparent] = createSignal(false);
   createEffect(() => {
     const onScroll = () => setTransparent(window.scrollY <= 16);
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    onCleanup(() => window.removeEventListener('scroll', onScroll));
+  });
+  const [name, setName] = useAtom(nameAtom);
+  createEffect(() => {
+    if (name().length === 0) {
+      Firebase.eraseUserProperty('name');
+    } else {
+      Firebase.setUserProperty('name', name());
+    }
   });
 
   return (
@@ -34,6 +47,16 @@ export function NavBar() {
           멤버십
         </div>
       </a>
+      <div flex-grow-1 />
+      <input
+        w-32
+        border-1
+        placeholder="Nickname"
+        value={name() ?? ''}
+        on:change={(e) => {
+          setName(e.currentTarget.value);
+        }}
+      />
     </nav>
   );
 }

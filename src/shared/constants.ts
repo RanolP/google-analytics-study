@@ -14,3 +14,7 @@ export const Google = {
     },
   },
 };
+
+export const Environment = {
+  isDevelopment: import.meta.env.DEV,
+};

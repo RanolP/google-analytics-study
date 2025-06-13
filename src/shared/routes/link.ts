@@ -3,7 +3,7 @@ export interface LinkMap {
   "/"?: never
   // membership/page.tsx
   "/membership"?: never
-  // (index)/page.tsx
+  // (home)/page.tsx
   "/"?: never
 };
 

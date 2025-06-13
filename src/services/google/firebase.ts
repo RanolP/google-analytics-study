@@ -5,13 +5,16 @@ import {
   setUserId,
   setUserProperties,
 } from 'firebase/analytics';
-import { Google } from '@/shared/constants';
+import { Environment, Google } from '@/shared/constants';
 
 const app = initializeApp(Google.Firebase.Config);
 const analytics = getAnalytics(app);
 
 export const Firebase = {
-  logEvent(name: string, params: Record<string, unknown>) {
+  logEvent(name: string, params?: Record<string, unknown>) {
+    if (Environment.isDevelopment) {
+      console.debug(`[firebase/event] ${name}`, params);
+    }
     logEvent(analytics, name, params);
   },
   setUserId(id: string) {
